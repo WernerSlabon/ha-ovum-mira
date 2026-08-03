@@ -1,0 +1,45 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ovum Mira Wärmepumpe einrichten",
+        "description": "Verbindung zur Ovum Mira Wärmepumpe über Modbus TCP herstellen",
+        "data": {
+          "host": "IP-Adresse oder Hostname",
+          "port": "Port",
+          "login_code": "Login-Code (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung fehlgeschlagen. Bitte überprüfen Sie die IP-Adresse und stellen Sie sicher, dass die Wärmepumpe erreichbar ist.",
+      "invalid_auth": "Login-Code ungültig. Bitte überprüfen Sie den am Display hinterlegten Code.",
+      "unknown": "Ein unbekannter Fehler ist aufgetreten."
+    },
+    "abort": {
+      "already_configured": "Dieses Gerät ist bereits konfiguriert."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "wpm_status": {
+        "state": {
+              "0": "Störung",
+              "1": "Inverter Offline",
+              "3": "Sperrzeit",
+              "4": "Ölvorheizen",
+              "5": "Bereit",
+              "6": "Start",
+              "7": "Warmwasser",
+              "8": "Heizen",
+              "9": "Kühlen",
+              "10": "Abtauen",
+              "11": "Manuell Enteisen",
+              "12": "Stoppt",
+              "13": "Einsatzgrenze unterschritten",
+              "14": "Inverterresetprozess"
+        }  
+      }
+    }
+  }
+}

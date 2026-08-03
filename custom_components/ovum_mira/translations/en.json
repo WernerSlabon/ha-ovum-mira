@@ -1,0 +1,54 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Ovum Mira Heat Pump",
+        "description": "Connect to Ovum Mira heat pump via Modbus TCP",
+        "data": {
+          "host": "IP Address or Hostname",
+          "port": "Port (Default: 502)",
+          "login_code": "Login Code (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect. Please check the IP address and ensure the heat pump is reachable.",
+      "invalid_auth": "Invalid login code. Please check the code configured on the display.",
+      "unknown": "An unknown error occurred."
+    },
+    "abort": {
+      "already_configured": "This device is already configured."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "wpm_status": {
+        "state": {
+              "0": "Error",
+              "1": "Inverter Offline",
+              "3": "Lockout",
+              "4": "Oil Preheat",
+              "5": "Ready",
+              "6": "Start",
+              "7": "Hot Water",
+              "8": "Heating",
+              "9": "Cooling",
+              "10": "Defrost",
+              "11": "Manual Defrost",
+              "12": "Stopped",
+              "13": "Operating Limit Exceeded",
+              "14": "Inverter Reset Process"
+        }  
+      }
+    },
+    "select": {
+      "ems_pv_status": {
+        "state": {
+              "neutral": "Neutral",
+              "increase": "Increase (PV Surplus)",
+              "reduce": "Reduce (PV Expected)"
+        }  
+      }
+    }
+  }
+}
