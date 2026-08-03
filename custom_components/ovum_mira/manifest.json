@@ -1,12 +1,13 @@
 {
   "domain": "ovum_mira",
   "name": "Ovum Mira",
-  "codeowners": [],
+  "codeowners": ["@WernerSlabon"],
   "config_flow": true,
-  "dependencies": [],
-  "documentation": "https://github.com/yourusername/ovum_mira",
+  "dependencies": ["pymodbus"],
+  "documentation": "https://github.com/WernerSlabon/ovum_mira",
+  "integration_type": "device",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/yourusername/ovum_mira/issues",
+  "issue_tracker": "https://github.com/WernerSlabon/ovum_mira/issues",
   "requirements": ["pymodbus==3.13.1"],
   "version": "1.0.3"
 }
