@@ -28,7 +28,7 @@ jobs:
           version="${version,,}"            # convert to lowercase (e.g., V2024.10.1 -> v2024.10.1)
           version="${version#v}"            # remove leading 'v' if present
           yq e -P -o=json \
-            -i ".version = \"${version}\"" \
+            -y -i ".version = \"${version}\"" \
             "${{ github.workspace }}/custom_components/ovum_mira/manifest.json"
 
       # Step 4: Create a ZIP archive of the component directory
