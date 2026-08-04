@@ -1,0 +1,6 @@
+{
+  "name": "Ovum Mira Wärmepumpe",
+  "homeassistant": "2026.7.0",
+  "hacs": "1.18.0",
+  "render_readme": true
+}
