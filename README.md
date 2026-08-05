@@ -65,6 +65,13 @@ Use the following steps for a manual configuration by adding the custom integrat
 
 You can repeat this to add other Ovum Mira heat pumps.
 
+[!IMPORTANT]
+The ModbusTCP port has to be enabled in the Mira control unit.
+- Open Menü / Einstellungen / Netzwerk
+- Modbus TCP: Enabled
+- Port: 502 (default)
+- Modbus-Login-Code: 1 (disable login code)
+- Modbus-Login-Code: <other> (Login code has to be entered in the device settings) 
 ## Want to report an issue?
 
 Please use the [GitHub Issues](https://github.com/WernerSlabon/ha-ovum-mira/issues) for reporting any issues you encounter with this integration. Please be so kind before creating a new issues, check the closed ones, if your problem have been already reported (& solved).
