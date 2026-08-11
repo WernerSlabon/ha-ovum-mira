@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.1](https://github.com/WernerSlabon/ha-ovum-mira/compare/v0.1.0...v0.1.1) (2026-08-11)
+## [2026.8.2](https://github.com/WernerSlabon/ha-ovum-mira/compare/v2026.8.1...v2026.8.2) (2026-08-11)
 
 
 ### Bug Fixes
