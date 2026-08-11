@@ -3,7 +3,7 @@
   "name": "Ovum Mira",
   "codeowners": ["@WernerSlabon"],
   "config_flow": true,
-  "dependencies": ["pymodbus"],
+  "dependencies": [],
   "documentation": "https://github.com/WernerSlabon/ovum_mira",
   "integration_type": "device",
   "iot_class": "local_polling",

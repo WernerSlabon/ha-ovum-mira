@@ -16,41 +16,41 @@ from .const import (
     REG_EMS_PV_STATUS,
     REG_EMS_SOLL_POWER,
     REG_EMS_WR_POWER,
-    REG_HSM_AUSSENTEMP,
-    REG_HK1_TYP,
-    REG_HK1_PV_PLUS,
-    REG_HK1_PV_MINUS,
-    REG_HK1_VORLAUF_SOLL,
-    REG_HK1_VORLAUF_IST,
     REG_HK1_MODE,
-    REG_HK1_RAUM_SOLL,
+    REG_HK1_PV_MINUS,
+    REG_HK1_PV_PLUS,
     REG_HK1_RAUM_IST,
-    REG_HK2_TYP,
-    REG_HK2_PV_PLUS,
-    REG_HK2_PV_MINUS,
-    REG_HK2_VORLAUF_SOLL,
-    REG_HK2_VORLAUF_IST,
+    REG_HK1_RAUM_SOLL,
+    REG_HK1_TYP,
+    REG_HK1_VORLAUF_IST,
+    REG_HK1_VORLAUF_SOLL,
     REG_HK2_MODE,
-    REG_HK2_RAUM_SOLL,
+    REG_HK2_PV_MINUS,
+    REG_HK2_PV_PLUS,
     REG_HK2_RAUM_IST,
+    REG_HK2_RAUM_SOLL,
+    REG_HK2_TYP,
+    REG_HK2_VORLAUF_IST,
+    REG_HK2_VORLAUF_SOLL,
+    REG_HSM_AUSSENTEMP,
     REG_PUFFER_SOLL_PV,
     REG_PUFFER_SOLL_TEMP,
     REG_PUFFER_TEMP_OBEN,
     REG_PUFFER_TEMP_UNTEN,
     REG_SOFTWARE_VERSION,
     REG_SYS_PUFFER,
-    REG_WPM1_SYSTYPE,
     REG_WPM1_ANFSOLL,
-    REG_WPM1_WP_PWR,
     REG_WPM1_KO_PWR,
-    REG_WPM1_STATUS,
-    REG_WPM1_KOET,
     REG_WPM1_KOAT,
+    REG_WPM1_KOET,
     REG_WPM1_RUNTIME,
+    REG_WPM1_STATUS,
+    REG_WPM1_SYSTYPE,
+    REG_WPM1_WP_PWR,
     REG_WW_DESIRED_TEMP,
-    REG_WW_SWITCH,
     REG_WW_SOLL,
     REG_WW_SOLL_PV,
+    REG_WW_SWITCH,
     REG_WW_SYSTEM,
     REG_WW_TEMP_OBEN,
     REG_WW_TEMP_UNTEN,
@@ -107,21 +107,13 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def _read_warmwasser(self) -> dict[str, Any]:
         """Read warmwasser (hot water) data."""
         return {
-            "ww_switch": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_WW_SWITCH, SLAVE_HSM
-            ),
-            "ww_soll": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_WW_SOLL, SLAVE_HSM
-            ),
-            "ww_soll_pv": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_WW_SOLL_PV, SLAVE_HSM
-            ),
+            "ww_switch": await self.hass.async_add_executor_job(self._client.read_int16, REG_WW_SWITCH, SLAVE_HSM),
+            "ww_soll": await self.hass.async_add_executor_job(self._client.read_int16, REG_WW_SOLL, SLAVE_HSM),
+            "ww_soll_pv": await self.hass.async_add_executor_job(self._client.read_int16, REG_WW_SOLL_PV, SLAVE_HSM),
             "ww_desired_temp": await self.hass.async_add_executor_job(
                 self._client.read_float32, REG_WW_DESIRED_TEMP, SLAVE_HSM
             ),
-            "ww_system": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_WW_SYSTEM, SLAVE_HSM
-            ),
+            "ww_system": await self.hass.async_add_executor_job(self._client.read_int16, REG_WW_SYSTEM, SLAVE_HSM),
             "ww_temp_oben": await self.hass.async_add_executor_job(
                 self._client.read_float32, REG_WW_TEMP_OBEN, SLAVE_HSM
             ),
@@ -133,9 +125,7 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def _read_heizpuffer(self) -> dict[str, Any]:
         """Read heating buffer data."""
         return {
-            "sys_puffer": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_SYS_PUFFER, SLAVE_HSM
-            ),
+            "sys_puffer": await self.hass.async_add_executor_job(self._client.read_int16, REG_SYS_PUFFER, SLAVE_HSM),
             "puffer_soll_pv": await self.hass.async_add_executor_job(
                 self._client.read_int16, REG_PUFFER_SOLL_PV, SLAVE_HSM
             ),
@@ -173,12 +163,8 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def _read_heizkreis1(self) -> dict[str, Any]:
         """Read heating circuit 1 data."""
         return {
-            "hk1_typ": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_HK1_TYP, SLAVE_HSM
-            ),
-            "hk1_pv_plus": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_HK1_PV_PLUS, SLAVE_HSM
-            ),
+            "hk1_typ": await self.hass.async_add_executor_job(self._client.read_int16, REG_HK1_TYP, SLAVE_HSM),
+            "hk1_pv_plus": await self.hass.async_add_executor_job(self._client.read_int16, REG_HK1_PV_PLUS, SLAVE_HSM),
             "hk1_pv_minus": await self.hass.async_add_executor_job(
                 self._client.read_int16, REG_HK1_PV_MINUS, SLAVE_HSM
             ),
@@ -188,9 +174,7 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             "hk1_vorlauf_ist": await self.hass.async_add_executor_job(
                 self._client.read_float32, REG_HK1_VORLAUF_IST, SLAVE_HSM
             ),
-            "hk1_mode": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_HK1_MODE, SLAVE_HSM
-            ),
+            "hk1_mode": await self.hass.async_add_executor_job(self._client.read_int16, REG_HK1_MODE, SLAVE_HSM),
             "hk1_raum_soll": await self.hass.async_add_executor_job(
                 self._client.read_float32, REG_HK1_RAUM_SOLL, SLAVE_HSM
             ),
@@ -202,12 +186,8 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def _read_heizkreis2(self) -> dict[str, Any]:
         """Read heating circuit 2 data."""
         return {
-            "hk2_typ": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_HK2_TYP, SLAVE_HSM
-            ),
-            "hk2_pv_plus": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_HK2_PV_PLUS, SLAVE_HSM
-            ),
+            "hk2_typ": await self.hass.async_add_executor_job(self._client.read_int16, REG_HK2_TYP, SLAVE_HSM),
+            "hk2_pv_plus": await self.hass.async_add_executor_job(self._client.read_int16, REG_HK2_PV_PLUS, SLAVE_HSM),
             "hk2_pv_minus": await self.hass.async_add_executor_job(
                 self._client.read_int16, REG_HK2_PV_MINUS, SLAVE_HSM
             ),
@@ -217,9 +197,7 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             "hk2_vorlauf_ist": await self.hass.async_add_executor_job(
                 self._client.read_float32, REG_HK2_VORLAUF_IST, SLAVE_HSM
             ),
-            "hk2_mode": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_HK2_MODE, SLAVE_HSM
-            ),
+            "hk2_mode": await self.hass.async_add_executor_job(self._client.read_int16, REG_HK2_MODE, SLAVE_HSM),
             "hk2_raum_soll": await self.hass.async_add_executor_job(
                 self._client.read_float32, REG_HK2_RAUM_SOLL, SLAVE_HSM
             ),
@@ -243,15 +221,9 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             "wpm1_ko_pwr": await self.hass.async_add_executor_job(
                 self._client.read_float32, REG_WPM1_KO_PWR, SLAVE_WPM1
             ),
-            "wpm1_status": await self.hass.async_add_executor_job(
-                self._client.read_int16, REG_WPM1_STATUS, SLAVE_WPM1
-            ),
-            "wpm1_koet": await self.hass.async_add_executor_job(
-                self._client.read_float32, REG_WPM1_KOET, SLAVE_WPM1
-            ),
-            "wpm1_koat": await self.hass.async_add_executor_job(
-                self._client.read_float32, REG_WPM1_KOAT, SLAVE_WPM1
-            ),
+            "wpm1_status": await self.hass.async_add_executor_job(self._client.read_int16, REG_WPM1_STATUS, SLAVE_WPM1),
+            "wpm1_koet": await self.hass.async_add_executor_job(self._client.read_float32, REG_WPM1_KOET, SLAVE_WPM1),
+            "wpm1_koat": await self.hass.async_add_executor_job(self._client.read_float32, REG_WPM1_KOAT, SLAVE_WPM1),
             "wpm1_betriebszeit": await self.hass.async_add_executor_job(
                 self._client.read_int32, REG_WPM1_RUNTIME, SLAVE_WPM1
             ),
@@ -268,14 +240,10 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             ),
         }
 
-    async def async_write_register(
-        self, address: int, value: int, slave: int = SLAVE_HSM
-    ) -> bool:
+    async def async_write_register(self, address: int, value: int, slave: int = SLAVE_HSM) -> bool:
         """Write a value to a register."""
         try:
-            result = await self.hass.async_add_executor_job(
-                self._client.write_int16, address, value, slave
-            )
+            result = await self.hass.async_add_executor_job(self._client.write_int16, address, value, slave)
             if result:
                 # Refresh data after write
                 await self.async_request_refresh()
@@ -284,14 +252,10 @@ class OvumMiraCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             _LOGGER.error("Error writing register %s: %s", address, err)
             return False
 
-    async def async_write_register_int32(
-        self, address: int, value: int, slave: int = SLAVE_HSM
-    ) -> bool:
+    async def async_write_register_int32(self, address: int, value: int, slave: int = SLAVE_HSM) -> bool:
         """Write a value to a register."""
         try:
-            result = await self.hass.async_add_executor_job(
-                self._client.write_int32, address, value, slave
-            )
+            result = await self.hass.async_add_executor_job(self._client.write_int32, address, value, slave)
             if result:
                 # Refresh data after write
                 await self.async_request_refresh()

@@ -1,4 +1,5 @@
 """Constants for the Ovum Mira integration."""
+
 from typing import Final
 
 DOMAIN: Final = "ovum_mira"
@@ -37,10 +38,10 @@ REG_SOFTWARE_VERSION: Final = 20
 REG_HSM_AUSSENTEMP: Final = 56048
 
 # Warmwasser (WW) OK
-REG_WW_SWITCH: Final = 55000 ## NEU
+REG_WW_SWITCH: Final = 55000  ## NEU
 REG_WW_SOLL: Final = 55001
 REG_WW_SOLL_PV: Final = 55002
-REG_WW_SYSTEM: Final = 55003   ## NEU
+REG_WW_SYSTEM: Final = 55003  ## NEU
 REG_WW_DESIRED_TEMP: Final = 55004
 REG_WW_TEMP_OBEN: Final = 55007
 REG_WW_TEMP_UNTEN: Final = 55009
